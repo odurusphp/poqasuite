@@ -9,6 +9,9 @@
         border: 1px solid #FB6600;
         padding:5px;
     }
+    input:focus { 
+  background: white !important;
+}
 
     button{
         font-size: 12px;
@@ -93,7 +96,7 @@
 
                             <tr>
                                 <td>Journal </td>
-                                <td><input type='text' class='form-control' value="<?=(isset($data['jid']))? $data['journal']:'' ?>" name='name' required></td>
+                                <td><input type='text' style="<?=(isset($data['jid']))? 'background:lightgreen':'' ?>" class='form-control' value="<?=(isset($data['jid']))? $data['journal']:'' ?>" name='name' required></td>
                             </tr>
                                 <input type="hidden" name="jid" value="<?=(isset($data['jid']))? $data['jid']:'add' ?>">
 

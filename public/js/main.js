@@ -1496,6 +1496,27 @@ $(document).ready(function() {
       }
 
   })
+
+  $(document).on('click', '.legclass', function(){
+  
+    //$('#viewmodal').modal('show');
+    var lid =  $(this).attr('legid');
+
+alert(lid);
+$('#empmodal').modal('show');
+$('#parentaccountarea').hide();
+var postdata = {};
+var ajaxurl =  urlroot + '/accounts/ledgers';
+AjaxPostRequest(ajaxurl, postdata)
+    // var postdata = {jid:jid};
+    // var ajaxurl =  urlroot + '/ajax/deletejournal';
+    // var redirectionurl =  urlroot + '/accounts/journals';
+
+    // if(confirm('Do you want to delete Journal ?')){
+    // AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
+    // }
+
+})
 })
 
 
