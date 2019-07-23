@@ -2,7 +2,6 @@
   "require": {
     "google/apiclient": "2.0",
     "phpoffice/phpexcel": "1.8.1",
-    "twitter/bootstrap": "4.0.0-beta.3",
     "heimrichhannot/popper.js": "1.12.6",
     "datatables/datatables": "1.10.16",
     "fortawesome/font-awesome": "4.7.0",
