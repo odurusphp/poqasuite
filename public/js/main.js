@@ -61,8 +61,8 @@ $(document).ready(function() {
                         $.blockUI();
                     },
                     success: function (text) {
-                        alert(text)
-                      // window.location.href = redirectionurl;
+                        //alert(text)
+                      window.location.href = redirectionurl;
                     },
                     complete: function () {
                         $.unblockUI();
@@ -1422,7 +1422,6 @@ $(document).ready(function() {
     // Accounts JS
     $('#accordion').accordion();
     $('#parentaccountarea').hide();
-
     $(document).on('change', '.subledger', function() {
 
         var x = $(this).val();
@@ -1440,6 +1439,7 @@ $(document).ready(function() {
 
     $(document).on('click', '.addnewledger', function(){
         $('#empmodal').modal('show');
+        $('#parentaccountarea').hide();
         var postdata = {};
         var ajaxurl =  urlroot + '/accounts/ledgers';
         AjaxPostRequest(ajaxurl, postdata)
@@ -1453,9 +1453,9 @@ $(document).ready(function() {
         var openingbalance  = $('#openingbalance').val();
         var subledger  = $('#subledger').val();
         var parentaccount = $('#parentaccount').val();
-        var opendate  = $('#opendate').val();
+        var opendate  = $('#openbalancedate').val();
 
-        var postdata = {name:name, type:type, openingbalance:openingbalance,subledger:subledger,
+        var postdata = {name:name, type:type, openingbalance:openingbalance, subledger:subledger,
                         parentaccount:parentaccount, opendate:opendate };
         var ajaxurl =  urlroot + '/accounts/addledgers';
         var redirectionurl =  urlroot + '/accounts/chartofaccount';
