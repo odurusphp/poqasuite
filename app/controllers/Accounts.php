@@ -56,13 +56,14 @@ class Accounts extends Controller
          $cr  = new Ledgers();
          print_r($cr->recordObject);
 
+        echo $_POST['openingbalance'];
         $cr->recordObject->ledger = $_POST['name'];
         $cr->recordObject->category = $_POST['type'];
         $cr->recordObject->openingbalance = $_POST['openingbalance'];
         $cr->recordObject->classification = $_POST['subledger'];
         $cr->recordObject->parentaccount = $_POST['parentaccount'];
-        $cr->recordObject->datecreated = date('Y-m-d H:i:s');
-        $cr->recordObject->opendate  = date('Y-m-d');
+       // $cr->recordObject->datecreated = date('Y-m-d H:i:s');
+       // $cr->recordObject->opendate  = date('Y-m-d');
         $cr->store();
     }
 
