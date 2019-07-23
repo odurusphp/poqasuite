@@ -29,6 +29,7 @@ $role =  $n->recordObject->role;
 <a href="<?php echo URLROOT  ?>/payrollreport/mainpayroll"><i  class="fa fa-home"></i> Reports</a>
 
 <a href="<?php echo URLROOT  ?>/operations"> <i  class="fa  fa-user"></i> Operational Modules</a>
+    <a href="<?php echo URLROOT  ?>/accounts/dashboard"> <i  class="fa  fa-user"></i> Accountting Modules</a>
 
 
 </div>
