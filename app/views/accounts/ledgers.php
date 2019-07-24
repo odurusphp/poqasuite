@@ -81,7 +81,7 @@
                                          $subdata  = Ledgers::getledgerbyparent($led->ledger);
                                         foreach($subdata as $get):
                                             ?>
-                                            <tr>
+                                            <tr class='legclass' legid="<?= $get->ac_nid?>" style="cursor:pointer">
                                                 <td><?php  echo $get->ledger  ?></td>
                                                 <td><?php  echo $get->category  ?></td>
 

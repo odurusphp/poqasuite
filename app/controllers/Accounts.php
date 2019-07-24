@@ -31,18 +31,28 @@ class Accounts extends Controller
         $this->view('accounts/config', $data);
     }
 
-    public function journals(){
+    public function journals($jid=null){
 
+        // save or update
         if(isset($_POST['addjournal'])){
-            $cj  = new Journals();
+            $jid= $_POST['jid']=='add'? null : $_POST['jid'];
+            $cj  = new Journals($jid);
             $cj->recordObject->journal = $_POST['name'];
             $cj->recordObject->category = 'Configured';
             $cj->store();
+            Redirecting::location('accounts/journals');
+        }
+
+        // edits
+        if(isset($jid)){
+            $cj  = new Journals($jid);
+            $journal = $cj->recordObject->journal;
             $listjournals  = Journals::listAll();
             $customers = AccountCustomers::listAll();
-            $data = ['journals'=> $listjournals, 'customers'=>$customers];
+            $data = ['journals'=> $listjournals, 'customers'=>$customers,'journal'=>$journal,'jid'=>$jid ];
             $this->view('accounts/journals', $data);
             exit;
+
         }
 
         $listjournals  = Journals::listAll();

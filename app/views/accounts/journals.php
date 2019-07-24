@@ -9,6 +9,9 @@
         border: 1px solid #FB6600;
         padding:5px;
     }
+    input:focus { 
+  background: white !important;
+}
 
     button{
         font-size: 12px;
@@ -93,14 +96,14 @@
 
                             <tr>
                                 <td>Journal </td>
-                                <td><input type='text' class='form-control' name='name' required></td>
+                                <td><input type='text' style="<?=(isset($data['jid']))? 'background:lightgreen':'' ?>" class='form-control' value="<?=(isset($data['jid']))? $data['journal']:'' ?>" name='name' required></td>
                             </tr>
-
+                                <input type="hidden" name="jid" value="<?=(isset($data['jid']))? $data['jid']:'add' ?>">
 
                             <tr>
                                 <td></td>
                                 <td><button class='btn btn-danger' style="font-size: 12px;" type='submit'
-                                            name='addjournal' > Add </button></td>
+                                            name='addjournal' > <?=(isset($data['jid']))? 'Update':'Add' ?> </button></td>
                             </tr>
 
                         </table>
@@ -132,7 +135,7 @@
                                     <tr>
                                         <td><?php  echo $get->journal  ?></td>
                                         <td><?php  echo $get->category  ?></td>
-                                        <td><a href='#'<i class='fa fa-pencil'></i></a></td>
+                                        <td><a href='<?= URLROOT?>/accounts/journals/<?=$get->ac_jid?>'> <i class='fa fa-pencil'></i></a></td>
                                         <td><a href='#' class='deletejournal' jid='<?php echo $get->ac_jid  ?>'><i class='fa fa-trash'></i></a></td>
 
                                     </tr>

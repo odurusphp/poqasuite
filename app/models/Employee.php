@@ -122,14 +122,6 @@ class Employee extends tableDataObject{
         return $payrolldb->resultSet();
     }
 
-    public static function getnationality($basicid){
-        global $payrolldb;
-        $getrecords = "select nationality  from basicinformation where  basic_id = $basicid " ;
-        $payrolldb->prepare($getrecords);
-        return $payrolldb->fetchColumn();
-    }
-
-
 
 
 }
