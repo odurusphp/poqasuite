@@ -248,7 +248,8 @@ $(document).ready(function() {
                 }
                 window.location.href='';
         
-            })
+
+    })
 
     $(document).on('click', '.deleteemployee', function(){
 
