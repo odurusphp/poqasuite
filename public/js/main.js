@@ -1465,7 +1465,6 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '#addaccount', function(){
-        $('#empmodal').modal('show');
 
         var name  = $('#name').val();
         var type  = $('#type').val();
@@ -1473,13 +1472,31 @@ $(document).ready(function() {
         var subledger  = $('#subledger').val();
         var parentaccount = $('#parentaccount').val();
         var opendate  = $('#openbalancedate').val();
+        var accid = $('#accid').val();
+        
 
         var postdata = {name:name, type:type, openingbalance:openingbalance, subledger:subledger,
-                        parentaccount:parentaccount, opendate:opendate };
+                        parentaccount:parentaccount, opendate:opendate,accid:accid };
         var ajaxurl =  urlroot + '/accounts/addledgers';
         var redirectionurl =  urlroot + '/accounts/chartofaccount';
         AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
     })
+
+    $(document).on('click', '#deleteaccount', function(){
+  
+      //$('#viewmodal').modal('show');
+      var accid =  $(this).attr('accid');
+
+
+      var postdata = {accid:accid};
+      var ajaxurl =  urlroot + '/ajax/deleteledger';
+      var redirectionurl =  urlroot + '/accounts/chartofaccount';
+
+      if(confirm('Do you want to delete Ledger ?')){
+      AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
+      }
+
+  })
 
     $(document).on('click', '.deletejournal', function(){
   
@@ -1502,21 +1519,49 @@ $(document).ready(function() {
     //$('#viewmodal').modal('show');
     var lid =  $(this).attr('legid');
 
-alert(lid);
-$('#empmodal').modal('show');
-$('#parentaccountarea').hide();
-var postdata = {};
-var ajaxurl =  urlroot + '/accounts/ledgers';
-AjaxPostRequest(ajaxurl, postdata)
-    // var postdata = {jid:jid};
-    // var ajaxurl =  urlroot + '/ajax/deletejournal';
-    // var redirectionurl =  urlroot + '/accounts/journals';
-
-    // if(confirm('Do you want to delete Journal ?')){
-    // AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
-    // }
+    $('#empmodal').modal('show');
+    $('#parentaccountarea').hide();
+    var postdata = {};
+    var ajaxurl =  urlroot + '/accounts/editledgers/'+lid;
+    AjaxPostRequest(ajaxurl, postdata)
 
 })
+
+$(document).on('dblclick', '.biglegclass', function(){
+  
+  //$('#viewmodal').modal('show');
+  var lid =  $(this).attr('legid');
+
+  $('#empmodal').modal('show');
+  $('#parentaccountarea').hide();
+  var postdata = {};
+  var ajaxurl =  urlroot + '/accounts/editledgers/'+lid;
+  AjaxPostRequest(ajaxurl, postdata)
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 

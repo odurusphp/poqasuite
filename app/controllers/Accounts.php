@@ -63,17 +63,15 @@ class Accounts extends Controller
 
 
     public function addledgers(){
-         $cr  = new Ledgers();
-         print_r($cr->recordObject);
-
-        echo $_POST['openingbalance'];
+        $accid = $_POST['accid']=='' ? null : $_POST['accid'];
+         $cr  = new Ledgers($accid);
         $cr->recordObject->ledger = $_POST['name'];
         $cr->recordObject->category = $_POST['type'];
         $cr->recordObject->openingbalance = $_POST['openingbalance'];
         $cr->recordObject->classification = $_POST['subledger'];
         $cr->recordObject->parentaccount = $_POST['parentaccount'];
-       // $cr->recordObject->datecreated = date('Y-m-d H:i:s');
-       // $cr->recordObject->opendate  = date('Y-m-d');
+        $cr->recordObject->datecreated = date('Y-m-d H:i:s');
+        $cr->recordObject->opendate  = $_POST['opendate'];
         $cr->store();
     }
 
@@ -83,6 +81,15 @@ class Accounts extends Controller
         $parentaccountdata = Ledgers::getmainaccounts();
         $data = ['catdata'=>$catdata, 'legdata'=>$legdata, 'parentaccountdata'=>$parentaccountdata];
         $this->view('accounts/addledger', $data);
+    }
+
+    public function editledgers($lid){
+        $cr  = new Ledgers($lid);
+        $ledger = &$cr->recordObject;
+        $catdata = Accountcategory::listAll();
+        $parentaccountdata = Ledgers::getmainaccounts();
+        $data = ['catdata'=>$catdata, 'ledger'=>$ledger, 'parentaccountdata'=>$parentaccountdata];
+        $this->view('accounts/editledger', $data);
     }
 
 

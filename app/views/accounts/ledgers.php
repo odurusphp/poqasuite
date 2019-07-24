@@ -74,7 +74,7 @@
                                 <?php
                                 foreach($data['parentaccountdata'] as $led):
                                 ?>
-                                    <h3><?php  echo $led->ledger  ?></></h3>
+                                    <h3  class='biglegclass' legid="<?= $led->ac_nid?>" ><?php  echo $led->ledger  ?></></h3>
                                 <div>
                                     <table  class='table table-bordered' style='font-size:12px'>
                                         <?php
