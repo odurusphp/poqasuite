@@ -13,15 +13,27 @@ class Accounts extends Controller
         $this->view('accounts/accountdashboard');
     }
 
-    public function config(){
+    public function config($cid=null){
 
         if(isset($_POST['addconfig'])){
-            $cr  = new AccountCustomers();
+            $cid= $_POST['cid']=='add'? null : $_POST['cid'];
+
+            $cr  = new AccountCustomers($cid);
             $cr->recordObject->name = $_POST['name'];
             $cr->recordObject->category = $_POST['category'];
             $cr->store();
             $listdata = AccountCustomers::listAll();
             $data = ['listdata'=>$listdata];
+            Redirecting::location('accounts/config');
+          
+        }
+
+        // edits
+        if(isset($cid)){
+            $cr  = new AccountCustomers($cid);
+           $accountCustomers = &$cr->recordObject;
+            $listdata = AccountCustomers::listAll();
+            $data = ['listdata'=>$listdata,'cid'=>$accountCustomers->ac_cid,'customers'=>$accountCustomers];
             $this->view('accounts/config', $data);
             exit;
         }

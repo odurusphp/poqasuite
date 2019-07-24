@@ -103,7 +103,11 @@
                             <tr>
                                 <td></td>
                                 <td><button class='btn btn-danger' style="font-size: 12px;" type='submit'
-                                            name='addjournal' > <?=(isset($data['jid']))? 'Update':'Add' ?> </button></td>
+                                            name='addjournal' > <?=(isset($data['jid']))? 'Update':'Add' ?> </button>
+                                    <?php if(isset($data['jid'])){?>
+                                    <a class='btn btn-danger' style="font-size: 12px;background-color:grey" href="<?=URLROOT?>/accounts/journals">back</a>
+                                    <?php }?>
+                                </td>
                             </tr>
 
                         </table>

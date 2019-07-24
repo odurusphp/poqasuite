@@ -1514,6 +1514,22 @@ $(document).ready(function() {
 
   })
 
+  $(document).on('click', '.deletecustomer', function(){
+  
+    //$('#viewmodal').modal('show');
+    var cid =  $(this).attr('customerid');
+
+
+    var postdata = {cid:cid};
+    var ajaxurl =  urlroot + '/ajax/deletecustomer';
+    var redirectionurl =  urlroot + '/accounts/config';
+
+    if(confirm('Do you want to delete Customer ?')){
+    AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
+    }
+
+})
+
   $(document).on('click', '.legclass', function(){
   
     //$('#viewmodal').modal('show');
