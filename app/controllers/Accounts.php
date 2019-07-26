@@ -13,15 +13,27 @@ class Accounts extends Controller
         $this->view('accounts/accountdashboard');
     }
 
-    public function config(){
+    public function config($cid=null){
 
         if(isset($_POST['addconfig'])){
-            $cr  = new AccountCustomers();
+            $cid= $_POST['cid']=='add'? null : $_POST['cid'];
+
+            $cr  = new AccountCustomers($cid);
             $cr->recordObject->name = $_POST['name'];
             $cr->recordObject->category = $_POST['category'];
             $cr->store();
             $listdata = AccountCustomers::listAll();
             $data = ['listdata'=>$listdata];
+            Redirecting::location('accounts/config');
+          
+        }
+
+        // edits
+        if(isset($cid)){
+            $cr  = new AccountCustomers($cid);
+           $accountCustomers = &$cr->recordObject;
+            $listdata = AccountCustomers::listAll();
+            $data = ['listdata'=>$listdata,'cid'=>$accountCustomers->ac_cid,'customers'=>$accountCustomers];
             $this->view('accounts/config', $data);
             exit;
         }
@@ -92,12 +104,12 @@ class Accounts extends Controller
 
 
     public function addledgers(){
-
-        $maincategory = Accountsubcategories::getcategory($_POST['type']);
-
-        $cr  = new Ledgers();
+        $accid = $_POST['accid']=='' ? null : $_POST['accid'];
+         $cr  = new Ledgers($accid);
+ $maincategory = Accountsubcategories::getcategory($_POST['type']);
         $cr->recordObject->ledger = $_POST['name'];
         $cr->recordObject->category = $_POST['type'];
+
         $cr->recordObject->classification = $_POST['subledger'];
         $cr->recordObject->parentaccount = $_POST['parentaccount'];
         $cr->recordObject->datecreated = date('Y-m-d H:i:s');
@@ -118,6 +130,15 @@ class Accounts extends Controller
         $parentaccountdata = GroupLedger::listAll();
         $data = ['catdata'=>$catdata, 'legdata'=>$legdata, 'parentaccountdata'=>$parentaccountdata];
         $this->view('accounts/addledger', $data);
+    }
+    
+public function editledgers($lid){
+        $cr  = new Ledgers($lid);
+        $ledger = &$cr->recordObject;
+        $catdata = Accountcategory::listAll();
+        $parentaccountdata = Ledgers::getmainaccounts();
+        $data = ['catdata'=>$catdata, 'ledger'=>$ledger, 'parentaccountdata'=>$parentaccountdata];
+        $this->view('accounts/editledger', $data);
     }
 
     public function groupledger(){

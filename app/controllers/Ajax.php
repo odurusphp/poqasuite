@@ -412,7 +412,20 @@ class Ajax extends Controller{
       $empdelete->deleteFromDB();
  
      }
+     public function deleteledger(){
+
+      $accid = $_POST['accid'];
+      $empdelete = new Ledgers($accid);
+      $empdelete->deleteFromDB();
  
+     }
+     public function deletecustomer(){
+
+      $cid = $_POST['cid'];
+      $empdelete = new AccountCustomers($cid);
+      $empdelete->deleteFromDB();
+ 
+     }
 
 }
 

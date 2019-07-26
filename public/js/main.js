@@ -1483,6 +1483,22 @@ $(document).ready(function() {
         AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
     })
 
+    $(document).on('click', '#deleteaccount', function(){
+  
+      //$('#viewmodal').modal('show');
+      var accid =  $(this).attr('accid');
+
+
+      var postdata = {accid:accid};
+      var ajaxurl =  urlroot + '/ajax/deleteledger';
+      var redirectionurl =  urlroot + '/accounts/chartofaccount';
+
+      if(confirm('Do you want to delete Ledger ?')){
+      AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
+      }
+
+  })
+
     $(document).on('click', '.deletejournal', function(){
   
       //$('#viewmodal').modal('show');
@@ -1499,19 +1515,23 @@ $(document).ready(function() {
 
   })
 
-  $(document).on('click', '.legclass', function(){
+  $(document).on('click', '.deletecustomer', function(){
   
     //$('#viewmodal').modal('show');
-    var lid =  $(this).attr('legid');
+    var cid =  $(this).attr('customerid');
 
-    alert(lid);
-    $('#empmodal').modal('show');
-    $('#parentaccountarea').hide();
-    var postdata = {};
-    var ajaxurl =  urlroot + '/accounts/ledgers';
-    AjaxPostRequest(ajaxurl, postdata)
 
-    })
+    var postdata = {cid:cid};
+    var ajaxurl =  urlroot + '/ajax/deletecustomer';
+    var redirectionurl =  urlroot + '/accounts/config';
+
+    if(confirm('Do you want to delete Customer ?')){
+    AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
+    }
+
+})
+
+  
 
     $(document).on('click', '.addnewledger', function(){
         $('#empmodal').modal('show');

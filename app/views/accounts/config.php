@@ -9,7 +9,9 @@
         border: 1px solid #FB6600;
         padding:2px;
     }
-
+    .form-control:focus { 
+  background: white !important;
+}
 </style>
 
 
@@ -47,17 +49,18 @@
 
                             <tr>
                                 <td>Customer </td>
-                                <td><input type='text' class='form-control' name='name' required></td>
+                                <td><input type='text' style="<?=(isset($data['cid']))? 'background:lightgreen':'' ?>" value="<?=(isset($data['cid']))? $data['customers']->name:'' ?>" class='form-control' name='name' required></td>
                             </tr>
 
+                            <input type="hidden" name="cid" value="<?=(isset($data['cid']))? $data['cid']:'add' ?>">
 
                             <tr>
                                 <td>Category</td>
                                 <td>
-                                    <select class="form-control" name="category" required>
+                                    <select class="form-control" style="<?=(isset($data['cid']))? 'background:lightgreen':'' ?>" name="category" required>
                                         <option value="">Select Category</option>
-                                        <option>Debtor</option>
-                                        <option>Creditor</option>
+                                        <option <?=(isset($data['cid']) && $data['customers']->category =='Debtor')? 'selected':'' ?>>Debtor</option>
+                                        <option <?=(isset($data['cid']) && $data['customers']->category =='Creditor')? 'selected':'' ?> >Creditor</option>
                                     </select>
 
                                 </td>
@@ -65,7 +68,12 @@
 
                             <tr>
                                 <td></td>
-                                <td><button class='btn btn-danger' type='submit' name='addconfig' > Add </button></td>
+                                <td><button class='btn btn-danger' style="font-size: 12px;" type='submit'
+                                            name='addconfig' > <?=(isset($data['cid']))? 'Update':'Add' ?> </button>
+                                    <?php if(isset($data['cid'])){?>
+                                    <a class='btn btn-danger' style="font-size: 12px;background-color:grey" href="<?=URLROOT?>/accounts/config">back</a>
+                                    <?php }?>
+                                </td>
                             </tr>
 
                         </table>
@@ -98,8 +106,8 @@
                                     <tr>
                                         <td><?php  echo $get->name  ?></td>
                                         <td><?php  echo $get->category  ?></td>
-                                        <td><a href='#'<i class='fa fa-pencil'></i></a></td>
-                                        <td><a href='#' class='deletecustomer' companyid='<?php echo $get->ac_cid  ?>'><i class='fa fa-trash'></i></a></td>
+                                        <td><a href='<?=URLROOT?>/accounts/config/<?= $get->ac_cid?>'><i class='fa fa-pencil'></i></a></td>
+                                        <td><a href='#' class='deletecustomer' customerid='<?php echo $get->ac_cid  ?>'><i class='fa fa-trash'></i></a></td>
 
                                     </tr>
                                     <?php
