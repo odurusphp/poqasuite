@@ -83,7 +83,7 @@
                             foreach($data['subaccountdata'] as $get):
                                 ?>
                                 <tr>
-                                    <td><a href="#" class="ledgerdetails" ledger="<?php echo $get->ledger  ?>"><?php  echo $get->ledger  ?></a></td>
+                                    <td><a href="#" class="ledgerdetails" ledger="<?php echo $get->ledger  ?>" ledgerid="<?php echo $get->ac_nid  ?>"><?php  echo $get->ledger  ?></a></td>
                                     <td><?php  echo $get->parentaccount  ?></td>
                                     <td><?php  echo $get->category  ?></td>
                                     <td><?php  echo $get->maincategory  ?></td>

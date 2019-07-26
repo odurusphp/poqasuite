@@ -54,11 +54,11 @@ class Ledgers extends tableDataObject
         return $payrolldb->singleRecord();
     }
 
-    public static function getopeningbalancecount($ledger){
+    public static function getopeningbalancebyledgerid($ledgerid){
         global $payrolldb;
-        $query = "Select openingbalance, opendate from ac_ledgers  where ledger = '$ledger' and openingbalance   ";
+        $query = "Select * from ac_openbalance  where  ac_nid = $ledgerid   ";
         $payrolldb->prepare($query);
-        return $payrolldb->fetchColumn();
+        return $payrolldb->singleRecord();
     }
 
 

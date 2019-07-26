@@ -46,7 +46,7 @@
        <br/>
         <div class="row">
             <div class="col-8">
-                <h3 style='color:#FB6600; font-weight:700' class="page-title"> ADD LEDGER ACCOUNTS </h3>
+                <h3 style='color:#FB6600; font-weight:700' class="page-title"> CHART OF ACCOUNT </h3>
             </div>
 
             <div class="col-4">

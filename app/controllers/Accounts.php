@@ -74,12 +74,14 @@ class Accounts extends Controller
 
         if(isset($_POST['addtransaction'])){
 
+            $ac_nid = Ledgers::getledgerid($_POST['jaccount']);
             $ts = new Transactions();
             $ts->recordObject->transactiondate = $_POST['entrydate'];
             $ts->recordObject->journal = $_POST['journalname'];
             $ts->recordObject->ledger = $_POST['jaccount'];
             $ts->recordObject->description = $_POST['jdescription'];
             $ts->recordObject->amount = $_POST['jamount'];
+            $ts->recordObject->ac_nid = $ac_nid;
             $ts->store();
 
             $listjournals  = Journals::listAll();
@@ -180,8 +182,10 @@ public function editledgers($lid){
 
     public function ledgerdetails(){
         $ledger = $_POST['ledger'];
+        $ledgerid = $_POST['ledgerid'];
         $ledgerdata = Transactions::getAllLdegerdetails($ledger);
-        $data = ['ledgerdata'=>$ledgerdata, 'ledger'=>$ledger];
+        $opendata = Ledgers::getopeningbalancebyledgerid($ledgerid);
+        $data = ['ledgerdata'=>$ledgerdata, 'ledger'=>$ledger, 'ledgerid'=>$ledgerid, 'opendata'=>$opendata];
         $this->view('accounts/ledgerdetails', $data);
 
     }

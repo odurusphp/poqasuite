@@ -1543,7 +1543,8 @@ $(document).ready(function() {
     $(document).on('click', '.ledgerdetails', function(){
         $('#empmodal').modal('show');
         var ledger = $(this).attr('ledger');
-        var postdata = {ledger:ledger};
+        var ledgerid = $(this).attr('ledgerid');
+        var postdata = {ledger:ledger, ledgerid:ledgerid };
         var ajaxurl =  urlroot + '/accounts/ledgerdetails/';
         AjaxPostRequest(ajaxurl, postdata)
     })
@@ -1565,6 +1566,7 @@ $(document).ready(function() {
         var redirectionurl =  urlroot + '/accounts/groupledger';
         AjaxPostRedirection(ajaxurl, postdata,redirectionurl)
     })
+
 
 
 
