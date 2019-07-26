@@ -187,7 +187,10 @@ public function editledgers($lid){
         $opendata = Ledgers::getopeningbalancebyledgerid($ledgerid);
         $data = ['ledgerdata'=>$ledgerdata, 'ledger'=>$ledger, 'ledgerid'=>$ledgerid, 'opendata'=>$opendata];
         $this->view('accounts/ledgerdetails', $data);
+    }
 
+    public function financedashboard(){
+        $this->view('accounts/reportdashboard');
     }
 
 }
