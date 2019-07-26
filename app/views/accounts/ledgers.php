@@ -18,6 +18,11 @@
         padding: .5em .5em .5em .7em;
         font-size: 100%;
     }
+    .dtrg-level-0{
+        background: #0b2c89 !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+     }
 
 </style>
 
@@ -68,23 +73,29 @@
 
                 <div class='card0'>
                     <div class="container">
-                        <div>
 
-                            <div id="accordion">
-                                <?php
-                                foreach($data['parentaccountdata'] as $led):
-                                ?>
-                                    <h3><?php  echo $led->ledger  ?></></h3>
                                 <div>
-                                    <table  class='table table-bordered' style='font-size:12px'>
-                                        <?php
-                                         $subdata  = Ledgers::getledgerbyparent($led->ledger);
-                                        foreach($subdata as $get):
-                                            ?>
-                                            <tr class='legclass' legid="<?= $get->ac_nid?>" style="cursor:pointer">
-                                                <td><?php  echo $get->ledger  ?></td>
-                                                <td><?php  echo $get->category  ?></td>
+                                    <table id="example" class="display" style="width:100%">
 
+                                        <thead>
+                                        <tr style="display: none">
+                                            <th>Main Category</th>
+                                            <th>Parent Account</th>
+                                            <th>Ledger</th>
+                                            <th>Category</th>
+
+                                        </tr>
+                                        </thead>
+                                        <?php
+
+                                        foreach($data['legdata'] as $get):
+
+                                            ?>
+                                            <tr>
+                                                <td><?php  echo $get->ledger  ?> </td>
+                                                <td><?php  echo $get->parentaccount  ?> </td>
+                                                <td><?php  echo $get->category  ?> </td>
+                                                <td><?php  echo $get->maincategory  ?> </td>
                                             </tr>
                                             <?php
                                         endforeach;
@@ -93,11 +104,13 @@
                                     </table>
 
                                 </div>
-                                <?php endforeach; ?>
-                            </div>
 
 
-                        </div>
+
+
+
+
+
                     </div>
                 </div>
 
@@ -127,3 +140,14 @@
 <!--Footer and JS directies -->
 
 <?php require APPROOT .'/views/inc/footer.php'  ?>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            orderFixed: [3, 'asc'],
+            rowGroup: {
+                dataSrc: 3
+            },
+            "info":true
+        } );
+    } );
+</script>

@@ -36,18 +36,40 @@
 
         <div id='placeholder'>
 
-            <h3>Make Journal Entries</h3>
+            <h3>Journal Entries History</h3>
 
-            <br/>
+            <table class="table table-bordered table-striped">
+                <tr style="font-size: 20px; font-weight: 700">
+                    <td>Journal</td>
+                    <td>Entry Date</td>
+                    <td>Account</td>
+                    <td>Description</td>
+                    <td>Amount</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+                 <?php  foreach($data['transactiondata'] as $get):  ?>
+                <tr>
+                    <td><?php echo $get->journal    ?></td>
+                    <td><?php echo $get->transactiondate    ?></td>
+                    <td><?php echo $get->ledger    ?></td>
+                    <td><?php echo $get->description    ?></td>
+                    <td><?php echo $get->amount    ?></td>
+                    <td><a href='<?= URLROOT?>/accounts/journals/<?=$get->ac_tid?>'> <i class='fa fa-pencil'></i></a></td>
+                    <td><a href='#' class='deletetransaction' jid='<?php echo $get->ac_tid  ?>'><i class='fa fa-trash'></i></a></td>
+                </tr>
+                <?php  endforeach;  ?>
+            </table>
 
             <div>
+                <form method="post">
                <table class="table table-bordered">
                    <tr>
                        <td>
-                           <input type="text" class="form-control alldate" placeholder="Entry Date" required  />
+                           <input type="text" class="form-control alldate" name="entrydate" placeholder="Entry Date" required  />
                        </td>
                        <td>
-                           <select class="form-control" required>
+                           <select class="form-control" name="journalname" required>
                                <option value="">Select Journal</option>
                                <?php foreach($data['journals'] as $get): ?>
                                    <option><?php  echo $get->journal  ?></option>
@@ -56,23 +78,23 @@
                        </td>
 
                        <td>
-                           <select class="form-control" required>
-                               <option value="">Select Particulars</option>
-                                <?php foreach($data['customers'] as $get): ?>
-                                    <option><?php  echo $get->name  ?></option>
+                           <select class="form-control" name = 'jaccount' required>
+                               <option value="">Select Account</option>
+                                <?php foreach($data['subaccounts'] as $get): ?>
+                                    <option value="<?php  echo $get->ledger ?>"><?php  echo $get->ledger . ' - '. $get->category ?></option>
                                  <?php endforeach; ?>
                            </select>
                        </td>
                        <td>
-                           <input type="text" class="form-control" placeholder="Description"/>
+                           <input type="text" class="form-control" name="jdescription" placeholder="Description"/>
                        </td>
 
                        <td>
-                           <input type="text" class="form-control" placeholder="Amount" />
+                           <input type="text" class="form-control" name="jamount"  placeholder="Amount" />
                        </td>
 
                        <td>
-                           <button class="btn btn-danger btn-sm" style="font-size: 12px;">Make Entry</button>
+                           <button class="btn btn-danger btn-sm" name="addtransaction" style="font-size: 12px;">Make Entry</button>
                        </td>
 
 
@@ -80,6 +102,7 @@
 
 
                </table>
+                </form>
             </div>
         </div>
 

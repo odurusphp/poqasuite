@@ -6,11 +6,11 @@ $role =  $n->recordObject->role;
 <div class="vertical-menu" style="margin-top:15px; font-size:16px">
     <div href="#" > QUICK MENU </div>
 
-    <a href="<?php echo URLROOT  ?>/accounts/journals"> <i  class="fa  fa-user"></i> Journals / Daybooks</a>
-    <a href="<?php echo URLROOT  ?>/accounts/ledgers"><i class="fa  fa-user"></i> Ledger Accounts</a>
-    <a href="<?php echo URLROOT  ?>/accounts"> <i class="fa  fa-user"></i> General Ledger</a>
-    <a href="<?php echo URLROOT  ?>/accounts/chartofaccount"> <i  class="fa  fa-user"></i> Chart of Accounts</a>
-    <a href="<?php echo URLROOT  ?>/accounts"> <i  class="fa  fa-user"></i> Financial Reports</a>
+    <a href="<?php echo URLROOT  ?>/accounts/groupledger"> <i  class="fa  fa-folder-open"></i> Group Ledgers</a>
+    <a href="<?php echo URLROOT  ?>/accounts/journals"> <i  class="fa  fa-cog"></i> Journals / Daybooks</a>
+    <a href="<?php echo URLROOT  ?>/accounts/generaledger"> <i class="fa  fa-file"></i> General Ledger</a>
+    <a href="<?php echo URLROOT  ?>/accounts/chartofaccount"> <i  class="fa  fa-link"></i> Chart of Accounts</a>
+    <a href="<?php echo URLROOT  ?>/accounts"> <i  class="fa  fa-bars"></i> Financial Statements</a>
 </div>
 
 

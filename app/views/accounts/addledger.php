@@ -1,38 +1,34 @@
 <table  class='table table-bordered table-condensed' style='font-size:12px'>
+
+    <tr>
+        <td>Select Group Ledger</td>
+        <td>
+            <select class="form-control" name="parentaccount" id="parentaccount">
+                <option value="">Select Group Ledger</option>
+                <?php foreach ($data['parentaccountdata'] as $get){   ?>
+                    <option><?php echo $get->groupledger   ?></option>
+                <?php }  ?>
+                <option value="None">None</option>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Account Name</td>
+        <td><input type='text' class='form-control' id='name' required /></td>
+    </tr>
+
         <tr>
             <td>Account Type</td>
             <td>
                 <select class="form-control" id="type" required>
                     <option value="">Select Category</option>
-                    <?php foreach ($data['catdata'] as $get){   ?>
-                        <option><?php echo $get->category   ?></option>
-                    <?php }  ?>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Account Name</td>
-            <td><input type='text' class='form-control' id='name' required /></td>
-        </tr>
-        <tr>
-            <td>Is it a sub-Ledger ?</td>
-            <td>
-                <select class="form-control subledger" id="subledger" required>
-                    <option value="">Select Option</option>
-                    <option value="sub">Yes</option>
-                    <option value="main">No</option>
-                </select>
-            </td>
-        </tr>
-
-        <tr id="parentaccountarea">
-            <td>Select Parent Account</td>
-            <td>
-                <select class="form-control" name="parentaccount" id="parentaccount">
-                    <option value="">Select Account</option>
-                    <?php foreach ($data['parentaccountdata'] as $get){   ?>
-                        <option><?php echo $get->ledger   ?></option>
-                    <?php }  ?>
+                    <option>Fixed Asset</option>
+                    <option>Current Asset</option>
+                    <option>Long-term Liability</option>
+                    <option>Current Liability</option>
+                    <option>Income</option>
+                    <option>Expense</option>
                 </select>
             </td>
         </tr>
@@ -52,3 +48,11 @@
         </tr>
 
 </table>
+
+<script>
+    $('#parentaccountarea').hide();
+
+    $(".alldate").datepicker({inline: true,
+        changeMonth: true, changeYear: true, yearRange: "1920:2080", dateFormat: 'yy-mm-dd' });
+
+</script>

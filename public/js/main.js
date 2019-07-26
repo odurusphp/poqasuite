@@ -1441,6 +1441,8 @@ $(document).ready(function() {
     // Accounts JS
     $('#accordion').accordion();
     $('#parentaccountarea').hide();
+
+
     $(document).on('change', '.subledger', function() {
 
         var x = $(this).val();
@@ -1472,10 +1474,10 @@ $(document).ready(function() {
         var openingbalance  = $('#openingbalance').val();
         var subledger  = $('#subledger').val();
         var parentaccount = $('#parentaccount').val();
-        var opendate  = $('#openbalancedate').val();
+        var openbalancedate  = $('#openbalancedate').val();
 
         var postdata = {name:name, type:type, openingbalance:openingbalance, subledger:subledger,
-                        parentaccount:parentaccount, opendate:opendate };
+                        parentaccount:parentaccount, openbalancedate:openbalancedate };
         var ajaxurl =  urlroot + '/accounts/addledgers';
         var redirectionurl =  urlroot + '/accounts/chartofaccount';
         AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
@@ -1502,21 +1504,55 @@ $(document).ready(function() {
     //$('#viewmodal').modal('show');
     var lid =  $(this).attr('legid');
 
-alert(lid);
-$('#empmodal').modal('show');
-$('#parentaccountarea').hide();
-var postdata = {};
-var ajaxurl =  urlroot + '/accounts/ledgers';
-AjaxPostRequest(ajaxurl, postdata)
-    // var postdata = {jid:jid};
-    // var ajaxurl =  urlroot + '/ajax/deletejournal';
-    // var redirectionurl =  urlroot + '/accounts/journals';
+    alert(lid);
+    $('#empmodal').modal('show');
+    $('#parentaccountarea').hide();
+    var postdata = {};
+    var ajaxurl =  urlroot + '/accounts/ledgers';
+    AjaxPostRequest(ajaxurl, postdata)
 
-    // if(confirm('Do you want to delete Journal ?')){
-    // AjaxPostRedirection(ajaxurl, postdata,redirectionurl);
-    // }
+    })
 
-})
+    $(document).on('click', '.addnewledger', function(){
+        $('#empmodal').modal('show');
+        var postdata = {};
+        var ajaxurl =  urlroot + '/accounts/ledgers';
+        AjaxPostRequest(ajaxurl, postdata)
+    })
+
+    $(document).on('click', '.ledgerdetails', function(){
+        $('#empmodal').modal('show');
+        var ledger = $(this).attr('ledger');
+        var postdata = {ledger:ledger};
+        var ajaxurl =  urlroot + '/accounts/ledgerdetails/';
+        AjaxPostRequest(ajaxurl, postdata)
+    })
+
+
+    $(document).on('click', '.addgroupledger', function(){
+        $('#empmodal').modal('show');
+        var postdata = {};
+        var ajaxurl =  urlroot + '/accounts/creategroupledger';
+        AjaxPostRequest(ajaxurl, postdata)
+    })
+
+
+    $(document).on('click', '#addgroupaccount', function(){
+        var type = $('#type').val();
+        var name = $('#name').val();
+        var postdata = {type:type, name:name};
+        var ajaxurl =  urlroot + '/accounts/addgroupledgers';
+        var redirectionurl =  urlroot + '/accounts/groupledger';
+        AjaxPostRedirection(ajaxurl, postdata,redirectionurl)
+    })
+
+
+
+
+
+
+
+
 })
 
 

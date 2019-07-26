@@ -46,6 +46,7 @@
 <script type="text/javascript" src="<?php echo URLROOT ?>/css/dataTables/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo URLROOT ?>/css/dataTables/js/dataTables.rowReorder.min.js"></script>
 <script type="text/javascript" src="<?php echo URLROOT ?>/css/dataTables/js/dataTables.responsive.min.js "></script>
+ <script type="text/javascript" src="<?php echo URLROOT ?>/css/dataTables/js/dataTables.rowGroup.min.js "></script>
 <script type="text/javascript" src="<?php echo URLROOT ?>/js/jquery.timepicker.js"></script>
 <script type="text/javascript" src="<?php echo URLROOT ?>/js/raphael.min.js"></script>
 <script type="text/javascript" src="<?php echo URLROOT ?>/js/morris.js"></script>
@@ -53,4 +54,6 @@
 <script src="<?php echo URLROOT ?>/js/js-xlsx-master/dist/xlsx.core.min.js"></script>
 <script src="<?php echo URLROOT ?>/js/js-xlsx-master/dist/xlsx.full.min.js"></script>
 <script src="<?php echo URLROOT ?>/js/tableexport.js"></script>
+ <script src="<?php echo URLROOT ?>/js/jquery.treetable.js"></script>
+
 <script type="text/javascript" src="<?php echo URLROOT ?>/js/main.js"></script>
